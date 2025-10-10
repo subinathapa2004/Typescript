@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Demo Website</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3178c6;
+            --secondary: #235a97;
+            --accent: #f7df1e;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #666;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+    
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        
+        .features {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        
+        .demo {
+            background-color: var(--primary);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .demo-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .demo-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .demo-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Type<span>Script</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>TypeScript: JavaScript That Scales</h1>
+            <p>TypeScript extends JavaScript by adding types, helping you catch errors early and write more maintainable code.</p>
+            <a href="#demo" class="btn">Try TypeScript Demo</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why TypeScript?</h2>
+                <p>Discover the powerful features that make TypeScript a preferred choice for modern web development.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Static Type Checking</h3>
+                    <p>Catch errors during development rather than at runtime with TypeScript's powerful type system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Enhanced IDE Support</h3>
+                    <p>Get better autocompletion, navigation, and refactoring tools with TypeScript-aware editors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Early Error Detection</h3>
+                    <p>Identify problems in your code as you write it, reducing debugging time significantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Easy Refactoring</h3>
+                    <p>Confidently refactor your code with the assurance that TypeScript will catch any breaking changes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Rich Ecosystem</h3>
+                    <p>Leverage the entire JavaScript ecosystem with additional type safety and tooling.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Future JavaScript Today</h3>
+                    <p>Use the latest JavaScript features and compile to any target environment you need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-content">
+                    <h2>TypeScript in Action</h2>
+                    <p>This interactive demo shows how TypeScript's type system can help prevent common errors. Try entering different values to see TypeScript's type checking in action.</p>
+                    <p>Notice how TypeScript provides helpful error messages when you try to use incompatible types.</p>
+                </div>
+                <div class="demo-box">
+                    <div class="input-group">
+                        <label for="name-input">Enter your name:</label>
+                        <input type="text" id="name-input" placeholder="Your name">
+                    </div>
+                    <div class="input-group">
+                        <label for="age-input">Enter your age:</label>
+                        <input type="number" id="age-input" placeholder="Your age">
+                    </div>
+                    <button id="submit-btn" class="btn">Process Data</button>
+                    <div class="result" id="result">
+                        Enter your information and click the button to see TypeScript in action.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="resources">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TypeScript</h3>
+                    <p>TypeScript is JavaScript with syntax for types. TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="https://www.typescriptlang.org/docs/" target="_blank">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://www.typescriptlang.org/" target="_blank">Official Website</a></li>
+                        <li><a href="https://github.com/microsoft/TypeScript" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://www.typescriptlang.org/play" target="_blank">TypeScript Playground</a></li>
+                        <li><a href="https://www.typescriptlang.org/community" target="_blank">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TypeScript Demo Website. This is a demonstration site for educational purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+    
+        
+        
+        const User = {
+            name: '',
+            age: 0
+        };
+        
+        
+        function processUserData(name, age) {
+            
+            if (typeof name !== 'string' || name.trim() === '') {
+                throw new Error('Name must be a non-empty string');
+            }
+            
+            if (typeof age !== 'number' || age < 0 || age > 150) {
+                throw new Error('Age must be a valid number between 0 and 150');
+            }
+            
+            
+            return {
+                name: name.trim(),
+                age: age,
+                isAdult: age >= 18,
+                birthYear: new Date().getFullYear() - age
+            };
+        }
+        
+        
+        const nameInput = document.getElementById('name-input');
+        const ageInput = document.getElementById('age-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultDiv = document.getElementById('result');
+        
+        
+        submitBtn.addEventListener('click', () => {
+            try {
+                const name = nameInput.value;
+                const age = parseInt(ageInput.value);
+                
+                
+                const userData = processUserData(name, age);
+                
+                
+                resultDiv.innerHTML = `
+                    <h4>User Information Processed Successfully:</h4>
+                    <p><strong>Name:</strong> ${userData.name}</p>
+                    <p><strong>Age:</strong> ${userData.age}</p>
+                    <p><strong>Status:</strong> ${userData.isAdult ? 'Adult' : 'Minor'}</p>
+                    <p><strong>Approximate Birth Year:</strong> ${userData.birthYear}</p>
+                    <p style="margin-top: 10px; color: green;">✓ Type checking passed! All inputs are valid.</p>
+                `;
+            } catch (error) {
+                
+                resultDiv.innerHTML = `
+                    <h4>Type Error Detected:</h4>
+                    <p style="color: red;">❌ ${error.message}</p>
+                    <p>This is similar to how TypeScript would catch type errors at compile time.</p>
+                `;
+            }
+        });
+        
+        
+        setTimeout(() => {
+            
+            const dynamicExample = document.createElement('div');
+            dynamicExample.style.marginTop = '20px';
+            dynamicExample.style.padding = '10px';
+            dynamicExample.style.backgroundColor = '#fff3cd';
+            dynamicExample.style.border = '1px solid #ffeaa7';
+            dynamicExample.style.borderRadius = '5px';
+            dynamicExample.innerHTML = `
+                <h4>TypeScript Catches This Error:</h4>
+                <p>In JavaScript: <code>let count = "5"; count = count + 1; // Results in "51"</code></p>
+                <p>In TypeScript: <code>let count: number = "5"; // Error: Type 'string' is not assignable to type 'number'</code></p>
+            `;
+            resultDiv.parentNode.insertBefore(dynamicExample, resultDiv.nextSibling);
+        }, 5000);
+    </script>
+</body>
+</html>
